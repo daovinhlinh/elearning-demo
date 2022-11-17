@@ -31,16 +31,6 @@ def _getRecommendations(request, number):
 
 
 def home(request):
-    # list course
-    # recommmend_list = request.session.get("recommmend_list")
-    # if recommmend_list is None:
-    #     recommmend_list = get_recommmendations(request.user)
-    #     request.session["recommmend_list"] = recommmend_list
-
-    # random_items = [
-    #     recommmend_list[random.randrange(len(recommmend_list))] for item in range(6)
-    # ]
-
     recommended_courses = _getRecommendations(request, 6)
     context = {"home_page": "active", "recommended_courses": recommended_courses}
     return render(request, "index.html", context)

@@ -177,27 +177,7 @@
                                             <li><a href="{% url 'teachers-single' 1 %}">Lecturer Single</a></li>
                                         </ul> -->
                                     </li>
-                                    <!-- <li class="nav-item">
-                                        <a href="blog.html">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="shop.html">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop-single.html">Shop Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="contact.html">Contact</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="contact-2.html">Contact Us 2</a></li>
-                                        </ul>
-                                    </li> -->
+
                                 </ul>
                             </div>
                             <!-- <div class="right-icon text-right">
@@ -250,21 +230,7 @@
         <div class="footer-top pt-40 pb-70">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-about mt-40">
-                            <div class="logo">
-                                <a href="#"><img src="{% static 'images/logo-2.png' %}" alt="Logo"></a>
-                            </div>
-                            <p>UTS which is the top-ranked young university in Australia welcomes you to join.</p>
-                            <ul class="mt-20">
-                                <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                        </div> <!-- footer about -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="footer-link mt-40">
                             <div class="footer-title pb-25">
                                 <h6>Sitemap</h6>
@@ -273,85 +239,15 @@
                                 <li><a href="index.html"><i class="fa fa-angle-right"></i>Home</a></li>
                                 <li><a href="about.html"><i class="fa fa-angle-right"></i>About us</a></li>
                                 <li><a href="courses.html"><i class="fa fa-angle-right"></i>Courses</a></li>
-                                <li><a href="blog.html"><i class="fa fa-angle-right"></i>News</a></li>
-                                <li><a href="events.html"><i class="fa fa-angle-right"></i>Event</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Gallery</a></li>
-                                <li><a href="shop.html"><i class="fa fa-angle-right"></i>Shop</a></li>
-                                <li><a href="teachers.html"><i class="fa fa-angle-right"></i>Teachers</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Support</a></li>
-                                <li><a href="contact.html"><i class="fa fa-angle-right"></i>Contact</a></li>
+                                <li><a href="{% url 'teachers'  %}"><i class="fa fa-angle-right"></i>Teachers</a></li>
+                                <li><a href="courses-progress.html"><i class="fa fa-angle-right"></i>Dashboard</a></li>
                             </ul>
                         </div> <!-- footer link -->
                     </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="footer-link support mt-40">
-                            <div class="footer-title pb-25">
-                                <h6>Support</h6>
-                            </div>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>FAQS</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Privacy</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Policy</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Support</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Documentation</a></li>
-                            </ul>
-                        </div> <!-- support -->
-                    </div>
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="footer-address mt-40">
-                            <div class="footer-title pb-25">
-                                <h6>Contact Us</h6>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="icon">
-                                        <i class="fa fa-home"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p>81 Broadway Ultimo, NSW Sydney</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p>+61 416 060 625</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <i class="fa fa-envelope-o"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p>philipyangly12@gmail.com</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> <!-- footer address -->
                 </div> -->
             </div> <!-- row -->
         </div> <!-- container -->
         </div> <!-- footer top -->
-
-        <div class="footer-copyright pt-10 pb-25">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="copyright text-md-left text-center pt-15">
-                            <p>&copy; Copyrights 2019 UTS All rights reserved. </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="copyright text-md-right text-center pt-15">
-                            <p>Designed by <span>UTS</span> </p>
-                        </div>
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- footer copyright -->
     </footer>
 
     <!--====== FOOTER PART ENDS ======-->
