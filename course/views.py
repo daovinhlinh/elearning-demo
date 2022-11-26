@@ -1,7 +1,7 @@
 import random
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
@@ -251,3 +251,12 @@ def course_progress(request):
         "has_more": has_more,
     }
     return render(request, "courses-progress.html", context)
+
+# @login_required
+# only admin can access this page
+@user_passes_test(lambda user:user.is_superuser) 
+def course_upload(request):
+    context = {
+        "courses_upload_page": "active",
+    }
+    return render(request, "course-upload.html", context)

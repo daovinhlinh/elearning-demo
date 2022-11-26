@@ -1,7 +1,8 @@
 from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils import timezone
-
+from cloudinary.models import CloudinaryField
+from cloudinary_storage.storage import VideoMediaCloudinaryStorage
 
 class Faculty(models.Model):
     name = models.CharField(max_length=80, blank=True, null=True)
@@ -48,7 +49,7 @@ class Subject(models.Model):
     thumb = models.CharField(max_length=100, blank=True, null=True)
     pic = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=1000, blank=True, null=True)
-
+    # video_url = models.ImageField(upload_to='videos/', storage=VideoMediaCloudinaryStorage())
     class Meta:
         managed = False
         db_table = 'subject'

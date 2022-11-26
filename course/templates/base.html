@@ -144,6 +144,10 @@
                                     </li>
                                     {% if user.is_superuser %}
                                     <li class="nav-item">
+                                        <a class="{{ courses_upload_page }}" href="{% url 'course-upload' %}">Course
+                                            upload</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{% url 'admin:index' %}">Admin</a>
                                     </li>
                                     {% endif %}
@@ -156,7 +160,7 @@
                                         <a class="{{ courses_page }}" href="{% url 'course-courses' %}">Courses</a>
                                         <ul class="sub-menu">
                                             <li><a href="{% url 'course-courses' %}">Course List</a></li>
-                                            <li><a href="{% url 'course-cb' %}">Content-based Recommendation</a></li>
+                                            <!-- <li><a href="{% url 'course-cb' %}">Content-based Recommendation</a></li> -->
                                             <!-- <li><a href="{% url 'course-cf' %}">Collaborative Filtering
                                                     Recommendation</a></li> -->
                                         </ul>

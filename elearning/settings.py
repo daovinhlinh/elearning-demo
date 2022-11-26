@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import cloudinary
+import cloudinary_storage
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -81,13 +85,13 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-
-    'default': {
+    
+        'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vuxzcftq',
-        'USER': 'vuxzcftq',
-        'PASSWORD': '2JZNd06QkOj-QrnBl-YnZV7dA8VQOcXc',
-        'HOST': 'rosie.db.elephantsql.com',
+        'NAME': 'elearning',
+        'USER': 'postgres',
+        'PASSWORD': '1',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -137,3 +141,18 @@ LOGIN_URL = 'users-login'
 LOGOUT_REDIRECT_URL = 'course-home'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'duzfwse0c',
+    'API_KEY': '753675948175492',
+    'API_SECRET': 'xiM2NDBfQPjJDMe9Qvy9utTgZew',
+}
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.VideoMediaCloudinaryStorage'
+
+# cloudinary.config( 
+#   cloud_name = "duzfwse0c", 
+#   api_key = "753675948175492", 
+#   api_secret = "xiM2NDBfQPjJDMe9Qvy9utTgZew" 
+# )

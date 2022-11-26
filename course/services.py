@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 from pandas import DataFrame
 from rake_nltk import Rake
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -160,7 +163,10 @@ def _calculate_ratings(rd_list, df, cosine_sim):
 
 def get_enrolled_subjects(userId):
 
-    current_student = Student.objects.get(account=userId)
+    print(Student.objects.filter(account=userId).query)
+    current_student = Student.objects.filter(account=userId).first()
+    # current_student = current_student1[0]
+    print(current_student)
     enrolled_course_list = Enrollment.objects.filter(
         student=current_student.id)
     return enrolled_course_list

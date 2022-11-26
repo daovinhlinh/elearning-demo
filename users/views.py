@@ -35,7 +35,8 @@ def teacher(request):
     if len(filter_str) == 0:
         filter_str = request.GET.get('filter_str', '').strip()
     if len(filter_str) == 0:
-        lecturer_list = list(Lecturer.objects.all())
+        lecturer_list =  list(Lecturer.objects.all())
+        new_lecturer_list = lecturer_list[0:20]
         base_url = '?page='
     else:
         lecturer_list = list(Lecturer.objects.filter(
@@ -46,7 +47,7 @@ def teacher(request):
                   "Pro Chancellor", "Aerobics head", "Vice Chancellor", "Pro Chancellor"]
 
     # Pagination
-    paginator = Paginator(lecturer_list, 8)
+    paginator = Paginator(new_lecturer_list, 8)
     page = request.GET.get('page')
     lecturers = paginator.get_page(page)
 
@@ -54,7 +55,7 @@ def teacher(request):
         'teachers_page': 'active',
         'lecturers': lecturers,
         'title_list': title_list,
-        'lecturers_size': lecturer_list.__len__,
+        'lecturers_size': new_lecturer_list.__len__,
         'base_url': base_url,
         'filter_str': filter_str
     }
