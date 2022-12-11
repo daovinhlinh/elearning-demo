@@ -1,12 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+# from course import models as course_models
 
 # name & email are in auth_user
 class Lecturer(models.Model):
-    # name = models.CharField(max_length=80, blank=True, null=True)
+    name = models.CharField(max_length=80, blank=True, null=True)
     account = models.ForeignKey(User, models.DO_NOTHING, db_column='account', blank=True, null=True)
-    # email = models.CharField(max_length=80, blank=True, null=True)
+    title = models.CharField(max_length=80, blank=True, null=True)
+    description = models.TextField(max_length=1000, blank=True, null=True)
+    achievement = models.TextField(max_length=1000, blank=True, null=True)
+    # subject1 = models.ForeignKey('course.Subject', models.DO_NOTHING ,db_column='subject',blank=True, null=True)
 
     class Meta:
         managed = False

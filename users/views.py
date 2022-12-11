@@ -50,7 +50,7 @@ def teacher(request):
     paginator = Paginator(new_lecturer_list, 8)
     page = request.GET.get('page')
     lecturers = paginator.get_page(page)
-
+    print(lecturers)
     context = {
         'teachers_page': 'active',
         'lecturers': lecturers,
@@ -63,9 +63,11 @@ def teacher(request):
 
 
 def teacher_single(request, lecturerId):
-    title_list = ["Vice Chancellor", "Pro Chancellor", "Aerobics head"]
-    title = title_list[random.randint(0, 2)]
+    # title_list = ["Vice Chancellor", "Pro Chancellor", "Aerobics head"]
+    # title = title_list[random.randint(0, 2)]
     lecturer = get_object_or_404(Lecturer, pk=lecturerId)
+    print(lecturer.title)
+    # print(lecturer)
     lecturer_rating_list = list(
         LecturerRating.objects.filter(lecturer=lecturerId))
     print("==============lecturer_rating_list==============")
@@ -74,7 +76,6 @@ def teacher_single(request, lecturerId):
     context = {
         'teachers_page': 'active',
         'lecturer': lecturer,
-        'title': title,
         'lecturer_rating_list': lecturer_rating_list,
         'rating_form': rating_form
     }

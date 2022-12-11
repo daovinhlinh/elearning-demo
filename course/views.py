@@ -13,7 +13,7 @@ from users.models import Student
 
 from .cfService import get_recommmendations_cf
 from .forms import CourseDismissForm, CourseEnrollForm
-from .models import Enrollment, Subject
+from .models import Enrollment, Subject, Lesson
 from .services import get_enrolled_subjects, get_recommmendations
 
 
@@ -114,8 +114,10 @@ def courses_cf(request):
 
 
 def course_single(request, course_id):
-    # course = Course.objects.get(pk=course_id);
     course = get_object_or_404(Subject, pk=course_id)
+    
+    # Sort lesson by order value
+    lessons =  Lesson.objects.filter(subject=course_id).order_by('order')
 
     # check if enrolled this subject if user has logined
     is_enrolled = False
@@ -138,6 +140,7 @@ def course_single(request, course_id):
         "course": course,
         "recommended_courses": random_items,
         "is_enrolled": is_enrolled,
+        "lessons": lessons,
     }
     return render(request, "courses-single.html", context)
 
@@ -149,8 +152,10 @@ def course_enroll(request):
     2. Refreshing recommendation course list by deleting request.session['recommmend_list']
     3. Message either success or error
     """
+
     if request.method == "POST":
         current_student = Student.objects.get(account=request.user.id)
+        print(current_student)
         form = CourseEnrollForm(request.POST)
         if form.is_valid():
             form.instance.student = current_student
@@ -191,7 +196,7 @@ def course_dismiss(request):
 
 def _refresh_session(request):
     del request.session["recommmend_list"]
-    del request.session["recommmend_cf_list"]
+    # del request.session["recommmend_cf_list"]
 
 
 @login_required
@@ -209,14 +214,17 @@ def course_progress(request):
         request.session["recommmend_list"] = recommmend_list
     recommmend_list = recommmend_list[0:4]
     # get collaborative filtering list
-    recommmend_cf_list = request.session.get("recommmend_cf_list")
-    if recommmend_cf_list is None:
-        recommmend_cf_list = get_recommmendations_cf(request.user)
-        request.session["recommmend_cf_list"] = recommmend_cf_list
-    recommmend_cf_list = recommmend_cf_list[0:4]
+    # recommmend_cf_list = request.session.get("recommmend_cf_list")
+    # if recommmend_cf_list is None:
+    #     recommmend_cf_list = get_recommmendations_cf(request.user)
+    #     request.session["recommmend_cf_list"] = recommmend_cf_list
+    # recommmend_cf_list = recommmend_cf_list[0:4]
+
+    recommmend_cf_list = _getRecommendations(request,4)
 
     # get enrolled subject list
     enrolled_course_list = get_enrolled_subjects(request.user.id)
+
     enrolled_course0 = []
     enrolled_course1 = []
     remain_course_list = []
