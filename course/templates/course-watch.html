@@ -1,0 +1,232 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div id="popup-course" class="course-summary">
+  <input type="checkbox" id="sidebar-toggle" />
+  <div id="popup-header">
+    <div class="popup-header__inner">
+      <h2 class="course-title">
+        <a
+          href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/"
+          >WordPress &amp; Elementor for Beginners</a
+        >
+      </h2>
+    </div>
+    <a
+      href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/"
+      class="back-course"
+      ><i class="fa fa-times"></i
+    ></a>
+  </div>
+
+  <div id="popup-sidebar">
+    <form method="post" class="search-course">
+      <input
+        type="text"
+        name="s"
+        autocomplete="off"
+        placeholder="Search for course content"
+      />
+      <button name="submit"></button>
+      <button type="button" class="clear"></button>
+      <input type="hidden" name="pNOzAMtSvYcxIy" value="yficjAvF" /><input
+        type="hidden"
+        name="FyHjCugnEeXr"
+        value="WImRfT"
+      />
+    </form>
+
+    <div class="course-curriculum" id="learn-press-course-curriculum">
+      <div class="curriculum-scrollable">
+        <ul class="curriculum-sections">
+          {% for lesson in lessons %}
+          <li
+            class="section closed"
+            id="section-introduction-{{lesson.id}}"
+            data-id="introduction-{{lesson.id}}"
+            data-section-id="{{lesson.id}}"
+          >
+            <div
+              class="section-header"
+              onclick="toggleSection(this)"
+              id="{{lesson.id}}"
+            >
+              <div class="section-left">
+                <h5 class="section-title">{{lesson.name}}
+                </h5>
+
+                <span class="section-toggle">
+                  <i class="fas fa-caret-down"></i>
+                  <i class="fas fa-caret-up"></i>
+                </span>
+              </div>
+            </div>
+
+            <ul class="section-content">
+              <li
+                class="course-item course-item-lp_lesson course-item-{{lesson.id}} item-preview has-status"
+                data-id="{{lesson.id}}"
+              >
+                <span
+                  class="section-item-link"
+                  onclick="playVideo(this)"
+                  id="{{lesson.id}}-{{lesson.videoUrl}}"
+                >
+                  <span class="item-name">{{lesson.name}}</span>
+
+                  <div class="course-item-meta">
+                    <span
+                      class="item-meta course-item-preview"
+                      data-preview="Preview"
+                    ></span>
+                  </div>
+                </span>
+              </li>
+            </ul>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup-content">
+    <div id="learn-press-content-item">
+      <div class="content-item-scrollable">
+        <div class="content-item-wrap">
+          <div class="content-item-summary">
+            <h3 class="course-item-title lesson-title">
+              WordPress hosting purchase
+            </h3>
+
+            <div class="content-item-description lesson-description">
+              <div
+                data-elementor-type="wp-post"
+                data-elementor-id="10397"
+                class="elementor elementor-10397"
+              >
+                <div class="elementor-inner">
+                  <div class="elementor-section-wrap">
+                    <section
+                      class="elementor-section elementor-top-section elementor-element elementor-element-7247aae elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                      data-id="7247aae"
+                      data-element_type="section"
+                    >
+                      <div
+                        class="elementor-container elementor-column-gap-default"
+                      >
+                        <div class="elementor-row">
+                          <div
+                            class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-16ff0db"
+                            data-id="16ff0db"
+                            data-element_type="column"
+                          >
+                            <div
+                              class="elementor-column-wrap elementor-element-populated"
+                            >
+                              <div class="elementor-widget-wrap">
+                                <div
+                                  class="elementor-element elementor-element-e056710 elementor-aspect-ratio-169 elementor-widget elementor-widget-video"
+                                  data-id="e056710"
+                                  data-element_type="widget"
+                                  data-settings='{"youtube_url":"https:\/\/www.youtube.com\/watch?v=XfpUyjcLhtw","video_type":"youtube","controls":"yes","aspect_ratio":"169"}'
+                                  data-widget_type="video.default"
+                                >
+                                  <div class="elementor-widget-container">
+                                    <div
+                                      class="elementor-wrapper elementor-fit-aspect-ratio elementor-open-inline"
+                                    >
+                                      <iframe
+                                        class="elementor-video"
+                                        frameborder="0"
+                                        allowfullscreen="1"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        title="99% of English Learners Get at Least One Wrong - Can You Pass this Test English Conditionals?"
+                                        width="640"
+                                        height="360"
+                                        src="https://www.youtube.com/embed/XfpUyjcLhtw?controls=1&amp;rel=0&amp;playsinline=0&amp;modestbranding=0&amp;autoplay=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fthepixelcurve.com&amp;widgetid=1"
+                                        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+                                        id="widget2"
+                                      ></iframe>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="elementor-element elementor-element-5c81595 elementor-widget elementor-widget-text-editor"
+                                  data-id="5c81595"
+                                  data-element_type="widget"
+                                  data-widget_type="text-editor.default"
+                                >
+                                  <div class="elementor-widget-container">
+                                    <div
+                                      class="elementor-text-editor elementor-clearfix"
+                                    >
+                                      This tutorial will help you learn quickly
+                                      and thoroughly. Lorem ipsum, or lipsum as
+                                      it is sometimes known, is dummy text used
+                                      in laying out print and web design.
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup-footer">
+    <div class="course-item-nav" data-nav="all">
+      <div class="prev">
+        <div class="course-item-nav__name">Domain registration</div>
+        <a
+          href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/lessons/domain-registration"
+        >
+          Prev
+        </a>
+      </div>
+
+      <div class="next">
+        <div class="course-item-nav__name">
+          Creating a logo for your website
+        </div>
+        <a
+          href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/lessons/creating-a-logo-for-your-website"
+        >
+          Next
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const playVideo = (elem) => {
+    console.log('run this');
+    const id = elem.id;
+    const videoUrl = id.split('-')[1];
+    console.log(videoUrl);
+    document.querySelector('iframe').src =
+      videoUrl || 'https://www.youtube.com/embed/CkW9q87oGGU';
+  };
+
+  const toggleSection = (elem) => {
+    const lessonId = elem.id;
+    const liElem = document.querySelector(
+      `li#section-introduction-${lessonId}`
+    );
+    const liClassName = liElem.className;
+    if (liClassName.includes('closed')) liElem.classList.remove('closed');
+    else liElem.classList.add('closed');
+  };
+</script>
+
+{% endblock content %}

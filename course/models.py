@@ -112,7 +112,8 @@ class Lesson(models.Model):
     description = models.CharField(max_length=80, blank=True, null=True)
     lecturer = models.ForeignKey(user_models.Lecturer, models.DO_NOTHING, db_column='lecturer', blank=True, null=True)
     subject = models.ForeignKey('Subject', models.DO_NOTHING, db_column='subject')
-    multimedia = models.ForeignKey('Multimedia', models.DO_NOTHING, db_column='multimedia', blank=True, null=True)
+    # multimedia = models.ForeignKey('Multimedia', models.DO_NOTHING, db_column='multimedia', blank=True, null=True)
+    videoUrl = models.CharField(max_length=200)
     order = models.IntegerField()
     book = models.ForeignKey(Book, models.DO_NOTHING, db_column='book', blank=True, null=True)
 
