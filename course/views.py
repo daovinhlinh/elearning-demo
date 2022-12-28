@@ -32,7 +32,8 @@ def _getRecommendations(request, number):
 
 def home(request):
     recommended_courses = _getRecommendations(request, 6)
-    context = {"home_page": "active", "recommended_courses": recommended_courses}
+    context = {"home_page": "active",
+               "recommended_courses": recommended_courses}
     return render(request, "index.html", context)
 
 
@@ -66,7 +67,33 @@ def courses_list(request):
         "base_url": base_url,
         "filter_str": filter_str,
     }
+
     return render(request, "courses-list.html", context)
+
+
+def course_watch(request):
+
+    course = get_object_or_404(Subject, pk=1)
+
+    # Sort lesson by order value
+    lessons = Lesson.objects.filter(subject=1).order_by('order')
+
+    # check if enrolled this subject if user has logined
+    is_enrolled = False
+    if request.user.is_authenticated:  # authenticated user
+        enrolled_course_list = get_enrolled_subjects(request.user.id)
+        if len(enrolled_course_list.filter(subject=1)) is not 0:
+            is_enrolled = True
+
+    context = {
+        "about_watch_page": "active",
+        "course": course,
+        "is_enrolled": is_enrolled,
+        "lessons": lessons,
+        "test": 1
+    }
+
+    return render(request, "course-watch.html", context)
 
 
 @cache_page(60 * 15)
@@ -115,9 +142,9 @@ def courses_cf(request):
 
 def course_single(request, course_id):
     course = get_object_or_404(Subject, pk=course_id)
-    
+
     # Sort lesson by order value
-    lessons =  Lesson.objects.filter(subject=course_id).order_by('order')
+    lessons = Lesson.objects.filter(subject=course_id).order_by('order')
 
     # check if enrolled this subject if user has logined
     is_enrolled = False
@@ -220,7 +247,7 @@ def course_progress(request):
     #     request.session["recommmend_cf_list"] = recommmend_cf_list
     # recommmend_cf_list = recommmend_cf_list[0:4]
 
-    recommmend_cf_list = _getRecommendations(request,4)
+    recommmend_cf_list = _getRecommendations(request, 4)
 
     # get enrolled subject list
     enrolled_course_list = get_enrolled_subjects(request.user.id)
@@ -262,7 +289,9 @@ def course_progress(request):
 
 # @login_required
 # only admin can access this page
-@user_passes_test(lambda user:user.is_superuser) 
+
+
+@user_passes_test(lambda user: user.is_superuser)
 def course_upload(request):
     context = {
         "courses_upload_page": "active",

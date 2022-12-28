@@ -99,9 +99,9 @@
                                     <div class="accordion" id="accordionExample">
                                         {% for lesson in lessons %}
                                         <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <a href="#" data-toggle="collapse" data-target="#collapseOne"
-                                                    aria-expanded="true" aria-controls="collapseOne" class="collapsed">
+                                            <div class="card-header" id="heading{{lesson.id}}">
+                                                <a href="#" data-toggle="collapse" data-target="#collapse{{ lesson.id }}"
+                                                    aria-expanded="false" aria-controls="collapse{{ lesson.id }}" class="collapsed">
                                                     <ul>
                                                         <li><i class="fa fa-file-o"></i></li>
                                                         <li><span class="lecture">Lesson {{ forloop.counter }}</span>
@@ -114,12 +114,12 @@
                                                 </a>
                                             </div>
 
-                                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                            <div id="collapse{{ lesson.id }}" class="collapse" aria-labelledby="heading{{lesson.id}}"
                                                 data-parent="#accordionExample">
                                                 <div class="card-body">
                                                     <p>{{ lesson.description }}</p>
                                                 </div>
-                                                <iframe width="100%" height="250" src={{ lesson.multimedia.url }}
+                                                <iframe width="100%" height="250" src="{{ lesson.videoUrl }}""
                                                     title="Title" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen></iframe>

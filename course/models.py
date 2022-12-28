@@ -120,20 +120,6 @@ class Book(models.Model):
         return f'{self.name}'
 
 
-class Multimedia(models.Model):
-    url = models.CharField(max_length=200, blank=True, null=True)
-    name = models.CharField(max_length=80, blank=True, null=True)
-    # type = models.ForeignKey('StylePreference', models.DO_NOTHING, db_column='type', blank=True, null=True)
-    author = models.CharField(max_length=80, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'multimedia'
-
-    def __str__(self):
-        return f'{self.name} | Author: {self.author}'
-
-
 class Lesson(models.Model):
     year = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=80, blank=True, null=True)
@@ -142,9 +128,8 @@ class Lesson(models.Model):
         user_models.Lecturer, models.DO_NOTHING, db_column='lecturer', blank=True, null=True)
     subject = models.ForeignKey(
         'Subject', models.DO_NOTHING, db_column='subject')
-    # multimedia = models.ForeignKey(
-    #     'Multimedia', models.DO_NOTHING, db_column='multimedia', blank=True, null=True)
-    multimedia = models.ManyToManyField(Multimedia)
+    # multimedia = models.ForeignKey('Multimedia', models.DO_NOTHING, db_column='multimedia', blank=True, null=True)
+    videoUrl = models.CharField(max_length=200)
     order = models.IntegerField()
     book = models.ForeignKey(Book, models.DO_NOTHING,
                              db_column='book', blank=True, null=True)
@@ -162,3 +147,47 @@ class Lesson(models.Model):
 
     def __str__(self):
         return f'{self.name} | Subject: {self.subject.name}'
+
+
+class Multimedia(models.Model):
+    url = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=80, blank=True, null=True)
+    # type = models.ForeignKey('StylePreference', models.DO_NOTHING, db_column='type', blank=True, null=True)
+    author = models.CharField(max_length=80, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'multimedia'
+
+    def __str__(self):
+        return f'{self.name} | Author: {self.author}'
+
+
+# class Lesson(models.Model):
+#     year = models.IntegerField(blank=True, null=True)
+#     name = models.CharField(max_length=80, blank=True, null=True)
+#     description = models.CharField(max_length=80, blank=True, null=True)
+#     lecturer = models.ForeignKey(
+#         user_models.Lecturer, models.DO_NOTHING, db_column='lecturer', blank=True, null=True)
+#     subject = models.ForeignKey(
+#         'Subject', models.DO_NOTHING, db_column='subject')
+#     # multimedia = models.ForeignKey(
+#     #     'Multimedia', models.DO_NOTHING, db_column='multimedia', blank=True, null=True)
+#     multimedia = models.ManyToManyField(Multimedia)
+#     order = models.IntegerField()
+#     book = models.ForeignKey(Book, models.DO_NOTHING,
+#                              db_column='book', blank=True, null=True)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'lesson'
+
+#     def clean(self):
+#         current_order = self.order
+#         list_lesson = list(Lesson.objects.all())
+#         for item in list_lesson:
+#             if item.subject.name == self.subject.name and item.order == current_order and item.id != self.id:
+#                 raise ValidationError("Order already exist")
+
+#     def __str__(self):
+#         return f'{self.name} | Subject: {self.subject.name}'
