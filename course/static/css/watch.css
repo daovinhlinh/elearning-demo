@@ -44,9 +44,7 @@
   h5 {
     font-size: 1.25rem;
   }
-  ul {
-    padding-left: 2rem;
-  }
+
   ul {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -90,27 +88,7 @@
   }
 }
 /*! CSS Used from: https://thepixelcurve.com/wp/edubin/wp-content/themes/edubin/assets/css/fontawesome.min.css?ver=6.1.1 ; media=all */
-@media all {
-  .fa,
-  .fas {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-  }
-  .fa,
-  .fas {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-  }
 
-  .fa-times:before {
-    content: '\f00d';
-  }
-}
 /*! CSS Used from: https://thepixelcurve.com/wp/edubin/wp-content/themes/edubin/assets/css/learnpress-v4.css?ver=8.13.22 ; media=all */
 @media all {
   @media (max-width: 768px) {
@@ -722,30 +700,7 @@
   }
 }
 /*! CSS Used from: https://thepixelcurve.com/wp/edubin/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css?ver=3.8.1 ; media=all */
-@media all {
-  .fa,
-  .fas {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-  }
 
-  .fa-times:before {
-    content: '\f00d';
-  }
-  .fa,
-  .fas {
-    font-family: 'Font Awesome 5 Free';
-  }
-  .fa,
-  .fas {
-    font-weight: 900;
-  }
-}
 /*! CSS Used from: https://thepixelcurve.com/wp/edubin/wp-content/uploads/elementor/css/global.css?ver=1669805834 ; media=all */
 @media all {
   .elementor-widget-text-editor {
@@ -829,12 +784,10 @@
     .section-content
     .course-item-meta
     .course-item-status::before {
-    font-family: 'Font Awesome 5 Free';
     font-size: 14px;
     font-weight: 900;
     vertical-align: middle;
     text-transform: lowercase;
-    content: '\f00c';
   }
   .course-curriculum .section-content .course-item-preview {
     font-style: normal;
@@ -842,8 +795,8 @@
   }
   .course-curriculum .section-content .course-item-preview::before {
     color: #fff;
-    padding: 0 8px;
-    background: #00adff;
+    padding: 0 20px;
+    background: #07294d;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -888,7 +841,7 @@
     width: 20px;
     padding: 15px 0;
     color: var(--lp-primary-color);
-    font-family: 'Font Awesome 5 Free';
+
     font-size: 18px;
     font-weight: 400;
     vertical-align: middle;
@@ -902,20 +855,7 @@
     font-weight: 600;
     vertical-align: middle;
   }
-  .course-curriculum
-    .course-item.course-item-lp_quiz
-    .section-item-link::before {
-    content: '\f059';
-  }
-  .course-curriculum
-    .course-item.course-item-lp_lesson
-    .section-item-link::before {
-    content: '\f15b';
-  }
-  .course-curriculum .course-item.item-locked .course-item-status::before {
-    color: var(--lp-secondary-color);
-    content: '\f023';
-  }
+
   .course-curriculum .course-item.has-status {
     padding-top: 1px;
   }
@@ -1182,19 +1122,11 @@
     background: transparent;
     line-height: 1px;
   }
-  #popup-course #popup-sidebar .search-course button::before {
-    color: #666;
-    font-family: 'Font Awesome 5 Free';
-    font-size: 16px;
-    font-weight: 900;
-    content: '\f002';
-  }
+
   #popup-course #popup-sidebar .search-course button.clear {
     display: none;
   }
-  #popup-course #popup-sidebar .search-course button.clear::before {
-    content: '\f00d';
-  }
+
   #popup-course #popup-sidebar .course-curriculum {
     overflow: auto;
     position: absolute;
@@ -1246,6 +1178,7 @@
     padding: 5px 20px;
     background: #f9fafc;
     align-items: center;
+    padding-top : 1rem;
   }
   #popup-course #popup-sidebar .course-item::before {
     top: -1px;
@@ -1341,7 +1274,7 @@
   #popup-course #popup-footer .course-item-nav .prev::before,
   #popup-course #popup-footer .course-item-nav .next::before {
     color: #999;
-    font-family: 'Font Awesome 5 Free';
+
     font-size: 12px;
     font-weight: 900;
   }
@@ -1366,14 +1299,7 @@
   #popup-course #popup-footer .course-item-nav .next {
     flex-direction: row-reverse;
   }
-  #popup-course #popup-footer .course-item-nav .next::before {
-    margin-left: 10px;
-    content: '\f0da';
-  }
-  #popup-course #popup-footer .prev::before {
-    margin-right: 10px;
-    content: '\f0d9';
-  }
+
   #popup-course #popup-footer .prev .course-item-nav__name {
     right: auto;
     left: -30px;
@@ -1432,10 +1358,10 @@
     top: 50%;
     left: 50%;
     color: var(--lp-primary-color);
-    font-family: 'Font Awesome 5 Free';
+
     font-size: 18px;
     font-weight: 900;
-    content: '\f0d9';
+
     transition: 0.25s;
     transform: translate(-50%, -50%);
   }
@@ -1582,30 +1508,9 @@
   }
 }
 /*! CSS Used from: https://thepixelcurve.com/wp/edubin/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.3 ; media=all */
-@media all {
-  .fa,
-  .fas {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-  }
 
-  .fa-times:before {
-    content: '\f00d';
-  }
-}
 /*! CSS Used from: https://thepixelcurve.com/wp/edubin/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.3 ; media=all */
-@media all {
-  .fa,
-  .fas {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-  }
-}
+
 /*! CSS Used from: Embedded */
 .site__content {
   padding: 90px 0;
@@ -1634,4 +1539,26 @@ button {
     > .elementor-widget-wrap {
     padding: 0px 0px 0px 0px;
   }
+}
+
+body.lp-sidebar-toggle__close #popup-course #popup-sidebar {
+  flex: 0 0 0;
+}
+
+body.lp-sidebar-toggle__close #popup-course #popup-header,
+body.lp-sidebar-toggle__close #popup-course #popup-footer,
+body.lp-sidebar-toggle__close #popup-course > #sidebar-toggle {
+  left: 0;
+}
+
+body.lp-sidebar-toggle__close #sidebar-toggle .fa-caret-left {
+  display: none;
+}
+
+body:not(.lp-sidebar-toggle__close) #sidebar-toggle .fa-caret-right {
+  display: none;
+}
+
+#popup-course #popup-header .popup-header__inner .course-title a:hover {
+  color: #ffc600;
 }

@@ -4663,6 +4663,10 @@ p.form-message.error {
   float: left;
 }
 
+.navigation .navbar-collapse .nav-item i::before {
+  color: #07294d;
+}
+
 /*=====================================================
     35.  css 
 ======================================================*/

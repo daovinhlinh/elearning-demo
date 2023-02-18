@@ -1,19 +1,18 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
 <div id="popup-course" class="course-summary">
-  <input type="checkbox" id="sidebar-toggle" />
-  <div id="popup-header">
+  <!-- <input type="checkbox" id="sidebar-toggle" onclick="closeSideBar()" /> -->
+  <button id="sidebar-toggle" onclick="closeSideBar()">
+    <i class="fa fa-caret-right" aria-hidden="true" style="color: #ffc600"></i>
+    <i class="fa fa-caret-left" aria-hidden="true" style="color: #ffc600"></i>
+  </button>
+  <div id="popup-header" style="background-color: #07294d">
     <div class="popup-header__inner">
       <h2 class="course-title">
-        <a
-          href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/"
-          >WordPress &amp; Elementor for Beginners</a
-        >
+        <a href="/courses-single/{{course.id}}">{{course.name}}</a>
       </h2>
     </div>
-    <a
-      href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/"
-      class="back-course"
+    <a href="/courses-single/{{course.id}}" class="back-course"
       ><i class="fa fa-times"></i
     ></a>
   </div>
@@ -26,7 +25,9 @@
         autocomplete="off"
         placeholder="Search for course content"
       />
-      <button name="submit"></button>
+      <button name="submit">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
       <button type="button" class="clear"></button>
       <input type="hidden" name="pNOzAMtSvYcxIy" value="yficjAvF" /><input
         type="hidden"
@@ -54,8 +55,8 @@
                 <h5 class="section-title">{{lesson.name}}</h5>
 
                 <span class="section-toggle">
-                  <i class="fas fa-caret-down"></i>
-                  <i class="fas fa-caret-up"></i>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                  <i class="fa fa-caret-up" aria-hidden="true"></i>
                 </span>
               </div>
             </div>
@@ -69,7 +70,17 @@
                   class="section-item-link"
                   onclick="playVideo(this)"
                   id="{{lesson.id}}-{{lesson.videoUrl}}"
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    align-items: center;
+                  "
                 >
+                  <i class="fa fa-file-o" style="color: #07294d;
+                  font-weight: 600;
+                  font-size: 17px;"></i>
+
                   <span class="item-name">{{lesson.name}}</span>
 
                   <div class="course-item-meta">
@@ -98,8 +109,8 @@
                 <h5 class="section-title">{{lesson.name}}</h5>
 
                 <span class="section-toggle">
-                  <i class="fas fa-caret-down"></i>
-                  <i class="fas fa-caret-up"></i>
+                  <i class="fa fa-caret-up" aria-hidden="true"></i>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </span>
               </div>
             </div>
@@ -114,6 +125,10 @@
                   onclick="playVideo(this)"
                   id="{{lesson.id}}-{{lesson.videoUrl}}"
                 >
+                  <i class="fa fa-file-o" style="color: #07294d;
+                  font-weight: 600;
+                  font-size: 17px;"></i>
+
                   <span class="item-name">{{lesson.name}}</span>
 
                   <div class="course-item-meta">
@@ -262,6 +277,19 @@
     const liClassName = liElem.className;
     if (liClassName.includes('closed')) liElem.classList.remove('closed');
     else liElem.classList.add('closed');
+  };
+
+  const closeSideBar = () => {
+    const bodyTag = document.querySelector('body');
+    const bodyTagClassName = bodyTag.className;
+    const sideBarCloseClass = 'lp-sidebar-toggle__close';
+    console.log(bodyTagClassName);
+    if (bodyTagClassName.includes(sideBarCloseClass)) {
+      bodyTag.classList.remove(sideBarCloseClass);
+    } else {
+      console.log('run this');
+      bodyTag.classList.add(sideBarCloseClass);
+    }
   };
 </script>
 
