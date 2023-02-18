@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import LecturerRatingForm, UserRegisterForm
 from .models import Lecturer, LecturerRating, Student
+from course.models import Subject
 
 
 def register(request):
@@ -35,7 +36,7 @@ def teacher(request):
     if len(filter_str) == 0:
         filter_str = request.GET.get('filter_str', '').strip()
     if len(filter_str) == 0:
-        lecturer_list =  list(Lecturer.objects.all())
+        lecturer_list = list(Lecturer.objects.all())
         new_lecturer_list = lecturer_list[0:20]
         base_url = '?page='
     else:
@@ -63,11 +64,10 @@ def teacher(request):
 
 
 def teacher_single(request, lecturerId):
-    # title_list = ["Vice Chancellor", "Pro Chancellor", "Aerobics head"]
-    # title = title_list[random.randint(0, 2)]
     lecturer = get_object_or_404(Lecturer, pk=lecturerId)
-    print(lecturer.title)
-    # print(lecturer)
+    courses = Subject.objects.filter(lecturer=lecturerId)
+    print("==============courses==============")
+    print(courses)
     lecturer_rating_list = list(
         LecturerRating.objects.filter(lecturer=lecturerId))
     print("==============lecturer_rating_list==============")
@@ -77,7 +77,8 @@ def teacher_single(request, lecturerId):
         'teachers_page': 'active',
         'lecturer': lecturer,
         'lecturer_rating_list': lecturer_rating_list,
-        'rating_form': rating_form
+        'rating_form': rating_form,
+        'courses': courses
     }
     return render(request, 'teachers-single.html', context)
 

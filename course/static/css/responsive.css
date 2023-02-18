@@ -209,6 +209,11 @@
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991.98px) {
 
+.col-md-6 {
+	flex: 1;
+	max-width: 100%;
+}
+
 .navigation .navbar {
 	padding: 8px 0px;
 }

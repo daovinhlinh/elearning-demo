@@ -88,12 +88,12 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-    
-        'default': {
+
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'elearning',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -154,8 +154,8 @@ CLOUDINARY_STORAGE = {
 MEDIA_URL = '/media/'
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.VideoMediaCloudinaryStorage'
 
-# cloudinary.config( 
-#   cloud_name = "duzfwse0c", 
-#   api_key = "753675948175492", 
-#   api_secret = "xiM2NDBfQPjJDMe9Qvy9utTgZew" 
+# cloudinary.config(
+#   cloud_name = "duzfwse0c",
+#   api_key = "753675948175492",
+#   api_secret = "xiM2NDBfQPjJDMe9Qvy9utTgZew"
 # )
