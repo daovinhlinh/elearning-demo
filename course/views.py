@@ -132,25 +132,28 @@ def courses_list(request):
     return render(request, "courses-list.html", context)
 
 
-def course_watch(request):
+def course_watch(request, course_id, current_lesson):
 
-    course = get_object_or_404(Subject, pk=1)
+    course = get_object_or_404(Subject, pk=course_id)
 
     # Sort lesson by order value
-    lessons = Lesson.objects.filter(subject=1).order_by('order')
+    lessons = Lesson.objects.filter(subject=course_id).order_by('order')
 
     # check if enrolled this subject if user has logined
     is_enrolled = False
     if request.user.is_authenticated:  # authenticated user
         enrolled_course_list = get_enrolled_subjects(request.user.id)
-        if len(enrolled_course_list.filter(subject=1)) is not 0:
+        if len(enrolled_course_list.filter(subject=course_id)) is not 0:
             is_enrolled = True
+
+    currentLessonDetail = [x for x in lessons if x.id == current_lesson]
 
     context = {
         "about_watch_page": "active",
         "course": course,
         "is_enrolled": is_enrolled,
         "lessons": lessons,
+        "current_lesson": currentLessonDetail[0],
         "test": 1
     }
 

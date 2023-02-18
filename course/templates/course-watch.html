@@ -38,9 +38,9 @@
     <div class="course-curriculum" id="learn-press-course-curriculum">
       <div class="curriculum-scrollable">
         <ul class="curriculum-sections">
-          {% for lesson in lessons %}
+          {% for lesson in lessons %} {% if lesson.id == current_lesson.id %}
           <li
-            class="section closed"
+            class="section"
             id="section-introduction-{{lesson.id}}"
             data-id="introduction-{{lesson.id}}"
             data-section-id="{{lesson.id}}"
@@ -51,8 +51,7 @@
               id="{{lesson.id}}"
             >
               <div class="section-left">
-                <h5 class="section-title">{{lesson.name}}
-                </h5>
+                <h5 class="section-title">{{lesson.name}}</h5>
 
                 <span class="section-toggle">
                   <i class="fas fa-caret-down"></i>
@@ -83,7 +82,51 @@
               </li>
             </ul>
           </li>
-          {% endfor %}
+          {% else %}
+          <li
+            class="section closed"
+            id="section-introduction-{{lesson.id}}"
+            data-id="introduction-{{lesson.id}}"
+            data-section-id="{{lesson.id}}"
+          >
+            <div
+              class="section-header"
+              onclick="toggleSection(this)"
+              id="{{lesson.id}}"
+            >
+              <div class="section-left">
+                <h5 class="section-title">{{lesson.name}}</h5>
+
+                <span class="section-toggle">
+                  <i class="fas fa-caret-down"></i>
+                  <i class="fas fa-caret-up"></i>
+                </span>
+              </div>
+            </div>
+
+            <ul class="section-content">
+              <li
+                class="course-item course-item-lp_lesson course-item-{{lesson.id}} item-preview has-status"
+                data-id="{{lesson.id}}"
+              >
+                <span
+                  class="section-item-link"
+                  onclick="playVideo(this)"
+                  id="{{lesson.id}}-{{lesson.videoUrl}}"
+                >
+                  <span class="item-name">{{lesson.name}}</span>
+
+                  <div class="course-item-meta">
+                    <span
+                      class="item-meta course-item-preview"
+                      data-preview="Preview"
+                    ></span>
+                  </div>
+                </span>
+              </li>
+            </ul>
+          </li>
+          {% endif %} {% endfor %}
         </ul>
       </div>
     </div>
@@ -95,7 +138,7 @@
         <div class="content-item-wrap">
           <div class="content-item-summary">
             <h3 class="course-item-title lesson-title">
-              WordPress hosting purchase
+              {{current_lesson.name}}
             </h3>
 
             <div class="content-item-description lesson-description">
@@ -143,7 +186,7 @@
                                         title="99% of English Learners Get at Least One Wrong - Can You Pass this Test English Conditionals?"
                                         width="640"
                                         height="360"
-                                        src="https://www.youtube.com/embed/XfpUyjcLhtw?controls=1&amp;rel=0&amp;playsinline=0&amp;modestbranding=0&amp;autoplay=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fthepixelcurve.com&amp;widgetid=1"
+                                        src="https://www.youtube.com/embed/CkW9q87oGGU"
                                         sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
                                         id="widget2"
                                       ></iframe>
@@ -160,10 +203,7 @@
                                     <div
                                       class="elementor-text-editor elementor-clearfix"
                                     >
-                                      This tutorial will help you learn quickly
-                                      and thoroughly. Lorem ipsum, or lipsum as
-                                      it is sometimes known, is dummy text used
-                                      in laying out print and web design.
+                                      {{current_lesson.description}}
                                     </div>
                                   </div>
                                 </div>
@@ -187,11 +227,7 @@
     <div class="course-item-nav" data-nav="all">
       <div class="prev">
         <div class="course-item-nav__name">Domain registration</div>
-        <a
-          href="https://thepixelcurve.com/wp/edubin/courses/wordpress-elementor-for-beginners/lessons/domain-registration"
-        >
-          Prev
-        </a>
+        <a href="{{current_lesson.videoUrl}}"> Prev </a>
       </div>
 
       <div class="next">
@@ -210,7 +246,6 @@
 
 <script type="text/javascript">
   const playVideo = (elem) => {
-    console.log('run this');
     const id = elem.id;
     const videoUrl = id.split('-')[1];
     console.log(videoUrl);
@@ -219,6 +254,7 @@
   };
 
   const toggleSection = (elem) => {
+    console.log('{{current_lesson}}');
     const lessonId = elem.id;
     const liElem = document.querySelector(
       `li#section-introduction-${lessonId}`

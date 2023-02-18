@@ -19,7 +19,7 @@ class Faculty(models.Model):
 
 
 class Course(models.Model):
-    # id = models.IntegerField(primary_key=True)
+    # id = models.`IntegerField`(primary_key=True)
     name = models.CharField(max_length=80, blank=True, null=True)
     course_describtion = models.TextField(blank=True, null=True)
     faculty = models.ForeignKey(
@@ -152,8 +152,9 @@ class Lesson(models.Model):
 class Multimedia(models.Model):
     url = models.CharField(max_length=200, blank=True, null=True)
     name = models.CharField(max_length=80, blank=True, null=True)
-    # type = models.ForeignKey('StylePreference', models.DO_NOTHING, db_column='type', blank=True, null=True)
+    order = models.IntegerField()
     author = models.CharField(max_length=80, blank=True, null=True)
+    lesson = models.ForeignKey(Lesson, models.DO_NOTHING, db_column='lesson')
 
     class Meta:
         managed = False
