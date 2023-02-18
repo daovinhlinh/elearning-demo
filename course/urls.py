@@ -14,5 +14,5 @@ urlpatterns = [
     path('course-dismiss', views.course_dismiss, name='course-dismiss'),
     path('courseProgress/', views.course_progress, name='course-progress'),
     path('course-upload/', views.course_upload, name='course-upload'),
-    path('course-watch/', views.course_watch, name='course-watch')
+    path('course-watch/<int:course_id>/<int:current_lesson>', views.course_watch, name='course-watch')
 ]

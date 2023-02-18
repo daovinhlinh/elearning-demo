@@ -146,9 +146,6 @@
                                     <li class="nav-item">
                                         <a class="{{ about_page }}" href="{% url 'course-about' %}">About</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="{{ about_page }}" href="{% url 'course-watch' %}">Watch</a>
-                                    </li>
                                     {% if user.is_superuser %}
                                     <li class="nav-item">
                                         <a class="{{ courses_upload_page }}" href="{% url 'course-upload' %}">Course
