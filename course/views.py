@@ -16,6 +16,64 @@ from .forms import CourseDismissForm, CourseEnrollForm
 from .models import Enrollment, Subject, Lesson
 from .services import get_enrolled_subjects, get_recommmendations
 
+# Suggestions
+import pandas as pd
+import neattext.functions as nfx
+# Load ML/Rc Pkgs
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
+
+# Load our dataset
+df = pd.read_csv('resources/subject_list.csv')
+
+# Clean Text:stopwords,special character
+df['clean_course_title'] = df['name'].apply(nfx.remove_stopwords)
+df['clean_course_title'] = df['clean_course_title'].apply(
+    nfx.remove_special_characters)
+
+course_title_list = df[['name', 'clean_course_title']]
+
+# Vectorize our Text
+count_vect = CountVectorizer()
+# FIt: calculate mean and std of data => calculate the frequency of each word
+# Transform: create a sparse matrix
+cv_mat = count_vect.fit_transform(df['clean_course_title'])
+# Dense
+cv_mat_dense = cv_mat.todense()
+df_cv_words = pd.DataFrame(
+    cv_mat_dense, columns=count_vect.get_feature_names_out())
+
+# Cosine Similarity Matrix
+cosine_sim_mat = cosine_similarity(cv_mat)
+
+# Get courses index
+course_indices = pd.Series(df.index, index=df['name']).drop_duplicates()
+
+
+def recommend_course(title, num_of_rec=10):
+    # ID for title
+    # Course Indice
+    idx = course_indices[title]
+    # Search inside cosine_sim_mat
+    # Scores
+    scores = list(enumerate(cosine_sim_mat[idx]))
+    # Sort our scores per cosine score || [1:]: remove itself
+    sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
+    # Recomm
+    # Contain name and scores
+    selected_course_indices = [i[0] for i in sorted_scores[1:]]
+    selected_course_scores = [i[1] for i in sorted_scores[1:]]
+    # result = df['name'].iloc[selected_course_indices]
+    # rec_df = pd.DataFrame(result)
+    # rec_df['similarity_scores'] = selected_course_scores
+    # return rec_df.head(num_of_rec)
+    result = selected_course_indices[0: num_of_rec]
+    return result
+
+
+# recommend_course = recommend_course('Industrial Relations', 20)
+# print(recommend_course)
+
 
 def _getRecommendations(request, number):
     recommmend_list = request.session.get("recommmend_list")
@@ -28,6 +86,9 @@ def _getRecommendations(request, number):
         for item in range(number)
     ]
     return random_items
+
+
+# def suggest(title):
 
 
 def home(request):
@@ -157,18 +218,24 @@ def course_single(request, course_id):
             is_enrolled = True
 
     # get cb list
-    recommmend_list = request.session.get("recommmend_list")
-    if recommmend_list is None:
-        recommmend_list = get_recommmendations(request.user)
-        request.session["recommmend_list"] = recommmend_list
+    # recommmend_list = request.session.get("recommmend_list")
+    # if recommmend_list is None:
+    #     recommmend_list = get_recommmendations(request.user)
+    #     request.session["recommmend_list"] = recommmend_list
 
-    random_items = [
-        recommmend_list[random.randrange(len(recommmend_list))] for item in range(2)
-    ]
+    # random_items = [
+    #     recommmend_list[random.randrange(len(recommmend_list))] for item in range(2)
+    # ]
+
+    recommmend_ids = recommend_course(course.name, 3)
+    print(recommmend_ids)
+    recommend_courses = Subject.objects.filter(id__in=recommmend_ids)
+    print(recommend_courses)
+
     context = {
         "courses_page": "active",
         "course": course,
-        "recommended_courses": random_items,
+        "recommended_courses": recommend_courses,
         "is_enrolled": is_enrolled,
         "lessons": lessons,
     }
