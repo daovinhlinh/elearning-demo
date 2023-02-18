@@ -100,8 +100,9 @@
                                         {% for lesson in lessons %}
                                         <div class="card">
                                             <div class="card-header" id="heading{{lesson.id}}">
-                                                <a href="#" data-toggle="collapse" data-target="#collapse{{ lesson.id }}"
-                                                    aria-expanded="false" aria-controls="collapse{{ lesson.id }}" class="collapsed">
+                                                <a href="#" data-toggle="collapse"
+                                                    data-target="#collapse{{ lesson.id }}" aria-expanded="false"
+                                                    aria-controls="collapse{{ lesson.id }}" class="collapsed">
                                                     <ul>
                                                         <li><i class="fa fa-file-o"></i></li>
                                                         <li><span class="lecture">Lesson {{ forloop.counter }}</span>
@@ -114,13 +115,13 @@
                                                 </a>
                                             </div>
 
-                                            <div id="collapse{{ lesson.id }}" class="collapse" aria-labelledby="heading{{lesson.id}}"
-                                                data-parent="#accordionExample">
+                                            <div id="collapse{{ lesson.id }}" class="collapse"
+                                                aria-labelledby="heading{{lesson.id}}" data-parent="#accordionExample">
                                                 <div class="card-body">
                                                     <p>{{ lesson.description }}</p>
                                                 </div>
                                                 <iframe width="100%" height="250" src="{{ lesson.videoUrl }}""
-                                                    title="Title" frameborder="0"
+                                                    title=" Title" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen></iframe>
                                             </div>
@@ -513,13 +514,14 @@
                     <div class="col-lg-12 col-md-6">
                         <div class="You-makelike mt-30">
                             <h4>You make like </h4>
+                            {% for course_rd in recommended_courses %}
                             <div class="single-makelike mt-20">
                                 <div class="image">
                                     <img src="{% static 'images/your-make/y-1.jpg'%}" alt="Image">
                                 </div>
                                 <div class="cont">
                                     <a href="#">
-                                        <h4>Introduction to machine languages</h4>
+                                        <h4>{{ course_rd.name }}</h4>
                                     </a>
                                     <ul>
                                         <li><a href="#"><i class="fa fa-user"></i>31</a></li>
@@ -527,7 +529,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="single-makelike mt-20">
+                            {% endfor %}
+
+                            <!-- <div class="single-makelike mt-20">
                                 <div class="image">
                                     <img src="{% static 'images/your-make/y-1.jpg'%}" alt="Image">
                                 </div>
@@ -554,7 +558,7 @@
                                         <li>$50</li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
