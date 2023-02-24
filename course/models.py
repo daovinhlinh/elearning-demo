@@ -59,6 +59,11 @@ class Subject(models.Model):
         'users.Lecturer', models.DO_NOTHING, db_column='lecturer')
 
     # video_url = models.CharField(max_length=1000, blank=True, null=True)
+    def get_lecturer(self):
+        lecturer = user_models.Lecturer.objects.get(id=self.lecturer)
+        if lecturer:
+            return lecturer
+        return None
 
     class Meta:
         managed = False

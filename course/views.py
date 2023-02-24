@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 
-from users.models import Student
+from users.models import Student, Lecturer
 
 from .cfService import get_recommmendations_cf
 from .forms import CourseDismissForm, CourseEnrollForm
@@ -115,6 +115,8 @@ def courses_list(request):
     else:
         course_list = list(Subject.objects.filter(name__icontains=filter_str))
         base_url = "?filter_str=" + filter_str + "&page="
+
+    lecturers = Lecturer.objects.all()
 
     # Pagination
     paginator = Paginator(course_list, 6)
