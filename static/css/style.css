@@ -3202,7 +3202,7 @@ p {
 .curriculum-cont .accordion .card .card-header a ul li {
   display: inline-block;
 }
-.curriculum-cont .accordion .card .card-header a ul .routing-span span:hover {
+.curriculum-cont .accordion .card .card-header a ul .routing-span.True span:hover {
   text-decoration: underline;
 }
 

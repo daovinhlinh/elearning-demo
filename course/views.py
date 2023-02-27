@@ -230,9 +230,9 @@ def course_single(request, course_id):
     # ]
 
     recommmend_ids = recommend_course(course.name, 3)
-    print(recommmend_ids)
     recommend_courses = Subject.objects.filter(id__in=recommmend_ids)
-    print(recommend_courses)
+
+    print(is_enrolled)
 
     context = {
         "courses_page": "active",

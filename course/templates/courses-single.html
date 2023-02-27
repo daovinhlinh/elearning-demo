@@ -107,11 +107,15 @@
                                                         <li><i class="fa fa-file-o"></i></li>
                                                         <li><span class="lecture">Lesson {{ forloop.counter }}</span>
                                                         </li>
-                                                        <li class="routing-span"><span class="head"
+                                                        <li class="routing-span {{is_enrolled}}"><span class="head"
                                                                 data-courseId="{{course.id}}"
                                                                 data-currentLesson="{{lesson.id}}"
                                                                 onclick="routingToCourseWatch(this)">{{lesson.name}}</span>
                                                         </li>
+                                                        {%if is_enrolled == False %}
+                                                        <li style="float : right"><i class="fa fa-lock"
+                                                                aria-hidden="true"></i></li>
+                                                        {% endif %}
                                                     </ul>
                                                 </a>
                                             </div>
@@ -415,7 +419,7 @@
                                     </ul>
                                     <span>(1000 Reviews)</span>
                                     <a href="{% url 'courses-single' forloop.counter %}">
-                                        <h4>Course {{ forloop.counter }}</h4>
+                                        <h4>Course {{ course_rd.name }}</h4>
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
@@ -449,13 +453,17 @@
 
 <script type="text/javascript">
     const routingToCourseWatch = (elem) => {
-        console.log(elem);
+
         const courseId = elem.dataset.courseid
         const currentLesson = elem.dataset.currentlesson
         const link = document.createElement('a')
         link.href = `/course-watch/${courseId}/${currentLesson}`
+
         document.body.appendChild(link);
-        link.click();
+
+        if ("{{user.is_authenticated}}".toLowerCase() === 'true' && "{{is_enrolled}}".toLowerCase() === 'true') {
+            link.click();
+        }
     };
 </script>
 
